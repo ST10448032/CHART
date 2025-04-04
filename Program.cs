@@ -23,6 +23,9 @@ namespace CHART
             string userName = GetUserName();// Updated method call
             DisplayWelcomeMessage(userName);
 
+            // Start interaction loop
+            StartInteraction();
+
         }
         static void PlayVoiceGreeting()
         {
@@ -70,7 +73,61 @@ namespace CHART
             Console.WriteLine("I'm here to help you stay safe online.");
             Console.WriteLine("You can ask me about password safety, phishing, and safe browsing.");
         }
+    
+      static void StartInteraction()
+        {
+            while (true)
+            {
+                Console.Write("\nYou: ");
+                string userInput = Console.ReadLine();
+                if (string.IsNullOrWhiteSpace(userInput))
+                {
+                    Console.WriteLine("I didn't quite understand that. Could you rephrase?");
+                    continue;
+                }
+
+                string response = GetResponse(userInput);
+                Console.WriteLine($"Bot: {response}");
+            }
+        }
+
+        static string GetResponse(string input)
+        {
+            input = input.ToLower();
+            if (input.Contains("how are you"))
+            {
+                return "I'm just a program, but I'm here to help you!";
+            }
+            else if (input.Contains("what's your purpose"))
+            {
+                return "My purpose is to help you understand cybersecurity better.";
+            }
+            else if (input.Contains("password safety"))
+            {
+                return "Always use strong passwords and change them regularly.";
+            }
+            else if (input.Contains("phishing"))
+            {
+                return "Be cautious of emails or messages asking for personal information.";
+            }
+            else if (input.Contains("safe browsing"))
+            {
+                return "Always check the URL and ensure it's secure (https://) before entering personal info.";
+            }
+            else
+            {
+                return "I didn't quite understand that. Could you rephrase?";
+            }
+        }
     }
 
+
+
 }
+
+      
+    
+
+
+
 
